@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sia.springboot3.Mapper.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.sia.springboot3.bean.Student">
+    <id column="S" jdbcType="CHAR" property="s" />
+    <result column="Sname" jdbcType="CHAR" property="sname" />
+    <result column="Ssex" jdbcType="CHAR" property="ssex" />
+    <result column="Sage" jdbcType="INTEGER" property="sage" />
+    <result column="D" jdbcType="CHAR" property="d" />
+    <result column="Sclass" jdbcType="CHAR" property="sclass" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    S, Sname, Ssex, Sage, D, Sclass
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where S = #{s,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from student
+    where S = #{s,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" keyColumn="S" keyProperty="s" parameterType="com.sia.springboot3.bean.Student" useGeneratedKeys="true">
+    insert into student (S,Sname, Ssex, Sage, D, Sclass)
+    values (#{s,jdbcType=CHAR},#{sname,jdbcType=CHAR}, #{ssex,jdbcType=CHAR}, #{sage,jdbcType=INTEGER},
+      #{d,jdbcType=CHAR}, #{sclass,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="S" keyProperty="s" parameterType="com.sia.springboot3.bean.Student" useGeneratedKeys="true">
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sname != null">
+        Sname,
+      </if>
+      <if test="ssex != null">
+        Ssex,
+      </if>
+      <if test="sage != null">
+        Sage,
+      </if>
+      <if test="d != null">
+        D,
+      </if>
+      <if test="sclass != null">
+        Sclass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sname != null">
+        #{sname,jdbcType=CHAR},
+      </if>
+      <if test="ssex != null">
+        #{ssex,jdbcType=CHAR},
+      </if>
+      <if test="sage != null">
+        #{sage,jdbcType=INTEGER},
+      </if>
+      <if test="d != null">
+        #{d,jdbcType=CHAR},
+      </if>
+      <if test="sclass != null">
+        #{sclass,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sia.springboot3.bean.Student">
+    update student
+    <set>
+      <if test="sname != null">
+        Sname = #{sname,jdbcType=CHAR},
+      </if>
+      <if test="ssex != null">
+        Ssex = #{ssex,jdbcType=CHAR},
+      </if>
+      <if test="sage != null">
+        Sage = #{sage,jdbcType=INTEGER},
+      </if>
+      <if test="d != null">
+        D = #{d,jdbcType=CHAR},
+      </if>
+      <if test="sclass != null">
+        Sclass = #{sclass,jdbcType=CHAR},
+      </if>
+    </set>
+    where S = #{s,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sia.springboot3.bean.Student">
+    update student
+    set Sname = #{sname,jdbcType=CHAR},
+      Ssex = #{ssex,jdbcType=CHAR},
+      Sage = #{sage,jdbcType=INTEGER},
+      D = #{d,jdbcType=CHAR},
+      Sclass = #{sclass,jdbcType=CHAR}
+    where S = #{s,jdbcType=CHAR}
+  </update>
+</mapper>
