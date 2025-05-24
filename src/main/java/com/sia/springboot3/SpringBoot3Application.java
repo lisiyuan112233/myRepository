@@ -1,5 +1,4 @@
 package com.sia.springboot3;
-
 import com.sia.springboot3.bean.User;
 import com.sia.springboot3.bean.User2;
 import com.sia.springboot3.beans.bean2;
