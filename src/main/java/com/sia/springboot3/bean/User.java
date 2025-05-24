@@ -61,4 +61,8 @@ public class User {
                 ", addrsMap=" + addrsMap +
                 '}';
     }
+
+    public static void main(String[] args) {
+        System.out.println("User");
+    }
 }
