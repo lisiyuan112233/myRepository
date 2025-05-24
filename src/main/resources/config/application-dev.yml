@@ -1,0 +1,27 @@
+myuser:
+  name: zhangsan
+  age: 18
+  addr:
+    province: beijing
+    city: chaoyang
+  addrs:
+    - province: beijing
+      city: chaoyang
+    - province: shanghai
+      city: pudong
+  addrsList:
+    - province: beijing
+      city: chaoyang
+    - province: shanghai
+      city: pudong
+  addrsMap:
+    addr1:
+      province: beijing
+      city: chaoyang
+    addr2:
+      province: shanghai
+      city: pudong
+myprop:
+  service:
+    username: lisi
+    password: 123456
