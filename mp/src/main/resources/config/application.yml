@@ -1,0 +1,21 @@
+spring:
+  #      sentinel:
+#        master: mymaster
+#        nodes:
+#          - 192.168.200.131:27001
+#          - 192.168.200.131:27002
+#          - 192.168.200.131:27003
+  #      host: 192.168.200.130
+#      port: 6379
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/school
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+logging:
+  pattern:
+    dateformat: yyyy年MM月dd日 HH:mm:ss
+#  level:
+#    root: fatal
+

@@ -64,4 +64,13 @@ public class CorsConfig implements WebMvcConfigurer {
             }
         };
     }
+    @Bean
+    public CuratorFramework curatorFramework(){
+        CuratorFramework build = CuratorFrameworkFactory.builder().connectString("47.111.144.151:2181")
+                .retryPolicy(new ExponentialBackoffRetry(3000, 10))
+                .namespace("lisiyuan")
+                .build();
+        build.start();
+        return build;
+    }
 }

@@ -8,6 +8,7 @@ import com.sia.springboot3.bean.good;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.apache.zookeeper.CreateMode;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,8 @@ class SpringBoot3ApplicationTests {
     private User user;
     @Autowired
     private good good;
+    @Autowired
+    private CuratorFramework build;
     @Autowired
     private StudentMapper studentMapper;
     @Value("${myprop.service.username}")
@@ -98,13 +101,12 @@ class SpringBoot3ApplicationTests {
     @Test
 
     public void TestZookeeper() throws Exception {
-//        framework.create().forPath("/apple","苹果".getBytes());
-        CuratorFramework build = CuratorFrameworkFactory.builder().connectString("47.111.144.151:2181")
-                .retryPolicy(new ExponentialBackoffRetry(3000, 10))
-                .namespace("lisiyuan")
-                .build();
-        build.start();
-        build.create().forPath("/ip");
-        
+//forPath("Lock-seq-")
+
+        for (int i = 0; i < 10; i++){
+             build.create().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath("/Lock/seq-");
+        }
+        build.getChildren().forPath("/Lock").forEach(System.out::println);
     }
+
 }
